@@ -34,7 +34,7 @@ public class MtsByTest {
 
     @Test
     public void testVisaLogoPresence() {
-        // логотип VISA по className
+        // логотипы по className
         WebElement visaLogo = driver.findElement(By.className("pay__partners"));
         assertTrue(visaLogo.isDisplayed(), "Логотип платежной системы VISA не найден на странице");
     }
