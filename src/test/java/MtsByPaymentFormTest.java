@@ -41,7 +41,7 @@ public class MtsByPaymentFormTest {
 
     @Test
     public void testPlaceholdersInHomeInternetPaymentFields() {
-        mainPage.clickTab("Интернет дома");
+        mainPage.clickTab("Домашний интернет");
         checkPlaceholdersForFields(
                 new String[]{"internet-phone", "internet-sum", "internet-email"},
                 new String[]{"Номер абонента", "Сумма", "E-mail для отправки чека"}
