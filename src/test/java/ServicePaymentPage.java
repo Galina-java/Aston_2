@@ -1,6 +1,10 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class ServicePaymentPage {
     private WebDriver driver;
@@ -21,6 +25,7 @@ public class ServicePaymentPage {
     private By belkartLogo = By.xpath("//div[@class='cards-brands ng-tns-c46-1']/div/img[2]");
     private By mirLogo = By.xpath("//img[contains(@src, 'mir-system-ru.svg')]");
     private By payButton = By.xpath("//div[@class='card-page__card']//button[@class='colored disabled']");
+    private By maestroLogo = By.xpath("//img[contains(@src, 'maestro-system.svg')]");
 
     public ServicePaymentPage(WebDriver driver) {
         this.driver = driver;
@@ -48,13 +53,8 @@ public class ServicePaymentPage {
     }
 
     public void switchToIframe() {
-        WebElement iframe = driver.findElement(iframeLocator);
-        driver.switchTo().frame(iframe);
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(iframeLocator));
     }
 
     public String getPopupSum() {
@@ -81,19 +81,32 @@ public class ServicePaymentPage {
     }
 
     public boolean isVisaLogoDisplayed() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='cards-brands ng-tns-c46-1']/div/img[1]")));
         return driver.findElement(visaLogo).isDisplayed();
     }
 
     public boolean isMasterCardLogoDisplayed() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='cards-brands ng-tns-c46-1']/div/img[2]")));
         return driver.findElement(mastercardLogo).isDisplayed();
     }
 
     public boolean isBelkartLogoDisplayed() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='cards-brands ng-tns-c46-1']/div/img[2]")));
         return driver.findElement(belkartLogo).isDisplayed();
     }
 
     public boolean isMirLogoCorrectlyDisplayed() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[contains(@src, 'mir-system-ru.svg')]")));
         return driver.findElement(mirLogo).getAttribute("style").contains("opacity: 0");
+    }
+    public boolean isMaestroLogoDisplayed() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[contains(@src, 'maestro-system.svg')]")));
+        return driver.findElement(maestroLogo).isDisplayed();
     }
 
     public String getPayButtonText() {

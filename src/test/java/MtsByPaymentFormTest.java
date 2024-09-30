@@ -129,11 +129,32 @@ public class MtsByPaymentFormTest {
                     assertTrue(servicePaymentPage.isMirLogoCorrectlyDisplayed(), "Логотип МИР не отображается корректно!");
                 },
                 () -> {
+                    // Проверка логотипа Maestro
+                    assertTrue(servicePaymentPage.isMaestroLogoDisplayed(), "Логотип МИР не отображается корректно!");
+                },
+                () -> {
                     // Проверка текста на кнопке "Оплатить"
                     String payButtonText = servicePaymentPage.getPayButtonText();
                     String summFull = "Оплатить  100.00 BYN <!---->";
                     assertEquals(summFull, payButtonText, "Текст на кнопке 'Оплатить' неверный!");
                 });
+    }
+
+    @Test
+    public void testBlockTitle() {
+        String expectedTitle = "Онлайн пополнение\nбез комиссии";
+        mainPage.checkBlockTitle(expectedTitle);
+    }
+
+    @Test
+    public void testVisaLogoPresence() {
+        mainPage.checkVisaLogoPresence();
+    }
+
+    @Test
+    public void testLearnMoreAboutServiceLink() {
+        String expectedUrl = "https://www.mts.by/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/";
+        mainPage.clickLearnMoreAboutServiceLink(expectedUrl);
     }
 
 
