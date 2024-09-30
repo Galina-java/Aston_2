@@ -4,7 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ServicePaymentPage_2 {
+public class ServicePaymentPage {
 
     //Локаторы
     public By mirLogoLocator = By.xpath("//img[contains(@src, 'mir-system-ru.svg')]");
@@ -45,7 +45,7 @@ public class ServicePaymentPage_2 {
     public WebElement mirLogo;
 
     //Конструктор
-    public ServicePaymentPage_2(WebDriver driver){
+    public ServicePaymentPage(WebDriver driver) {
         // Инициализация веб элементов
         PageFactory.initElements(driver, this);
     }

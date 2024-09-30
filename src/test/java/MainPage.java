@@ -1,4 +1,3 @@
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,7 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MainPage_2 {
+public class MainPage {
 
     //Элементы
     @FindBy(xpath = "//*[@class = 'select__now']")
@@ -48,7 +47,7 @@ public class MainPage_2 {
     public WebElement serviceLink;
 
     //Конструктор
-    public MainPage_2(WebDriver driver){
+    public MainPage(WebDriver driver) {
         // Инициализация веб элементов
         PageFactory.initElements(driver, this);
     }
@@ -66,8 +65,8 @@ public class MainPage_2 {
 
     public void selectTab(String value) {
         tab.click();
-        for (WebElement element: dropDownList) {
-            if(element.getText().equals(value)){
+        for (WebElement element : dropDownList) {
+            if (element.getText().equals(value)) {
                 element.click();
                 break;
             }
@@ -98,7 +97,7 @@ public class MainPage_2 {
         driver.switchTo().frame(iframe);
     }
 
-    public String getBlockTitle(){
+    public String getBlockTitle() {
         return blockTitle.getText();
     }
 }
